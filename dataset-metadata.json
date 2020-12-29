@@ -1,0 +1,16 @@
+{
+  "id": "rounakbanik/pokemon",
+  "id_no": 2756,
+  "title": "The Complete Pokemon Dataset",
+  "subtitle": "Data on more than 800 Pokemon from all 7 Generations.",
+  "description": "### Context\n\nThis dataset contains information on all 802 Pokemon from all Seven Generations of Pokemon. The information contained in this dataset include Base Stats, Performance against Other Types, Height, Weight, Classification, Egg Steps, Experience Points, Abilities, etc. The information was scraped from http://serebii.net/\n\n\n### Content\n\n* **name:** The English name of the Pokemon\n* **japanese_name:** The Original Japanese name of the Pokemon\n* **pokedex_number:** The entry number of the Pokemon in the National Pokedex\n* **percentage_male:** The percentage of the species that are male. Blank if the Pokemon is genderless.\n* **type1:** The Primary Type of the Pokemon\n* **type2:** The Secondary Type of the Pokemon\n* **classification:** The Classification of the Pokemon as described by the Sun and Moon Pokedex\n* **height_m:** Height of the Pokemon in metres\n* **weight_kg:** The Weight of the Pokemon in kilograms\n* **capture_rate:** Capture Rate of the Pokemon\n* **base_egg_steps:** The number of steps required to hatch an egg of the Pokemon\n* **abilities:** A stringified list of abilities that the Pokemon is capable of having\n* **experience_growth:** The Experience Growth of the Pokemon\n* **base_happiness:** Base Happiness of the Pokemon\n* **against_?:** Eighteen features that denote the amount of damage taken against an attack of a particular type\n* **hp:** The Base HP of the Pokemon\n* **attack:** The Base Attack of the Pokemon\n* **defense:** The Base Defense of the Pokemon\n* **sp_attack:** The Base Special Attack of the Pokemon\n* **sp_defense:** The Base Special Defense of the Pokemon\n* **speed:** The Base Speed of the Pokemon\n* **generation:** The numbered generation which the Pokemon was first introduced\n* **is_legendary:** Denotes if the Pokemon is legendary.\n\n\n### Acknowledgements\n\nThe data was scraped from http://serebii.net/.\n\n\n### Inspiration\n\nPokemon holds a very special place in my heart as it is probably the only video game I have judiciously followed for more than 10 years. With this dataset, I wanted to be able to answer the following questions:\n\n* Is it possible to build a classifier to identify legendary Pokemon?\n* How does height and weight of a Pokemon correlate with its various base stats?\n* What factors influence the Experience Growth and Egg Steps? Are these quantities correlated?\n* Which type is the strongest overall? Which is the weakest?\n* Which type is the most likely to be a legendary Pokemon?\n* Can you build a Pokemon dream team? A team of 6 Pokemon that inflicts the most damage while remaining relatively impervious to any other team of 6 Pokemon.",
+  "keywords": [
+    "earth and nature",
+    "arts and entertainment",
+    "games",
+    "video games",
+    "anime and manga",
+    "popular culture"
+  ],
+  "resources": []
+}
