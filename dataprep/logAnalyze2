@@ -1,0 +1,618 @@
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe8 in position 3: invalid continuation byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe8 in position 3: invalid continuation byte
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 4: invalid continuation byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 4: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 918, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 2042, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 7 fields in line 12, saw 9
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 540, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 15: unexpected end of data
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 15: unexpected end of data
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 15: unexpected end of data
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xca in position 15: unexpected end of data
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 7: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 7: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 7: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 7: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 7: invalid continuation byte
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x92 in position 18: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x92 in position 18: invalid start byte
+sys:1: DtypeWarning: Columns (4) have mixed types.Specify dtype option on import or set low_memory=False.
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 82: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x85 in position 82: invalid start byte
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf1 in position 2: invalid continuation byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf1 in position 2: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 918, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 2042, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 2 fields in line 17, saw 3
+
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa0 in position 74: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xa0 in position 74: invalid start byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 540, in pandas._libs.parsers.TextReader.__cinit__
+pandas.errors.EmptyDataError: No columns to parse from file
+sys:1: DtypeWarning: Columns (7) have mixed types.Specify dtype option on import or set low_memory=False.
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xcd in position 17: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 452, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 936, in __init__
+    self._make_engine(self.engine)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1168, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1998, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 537, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 740, in pandas._libs.parsers.TextReader._get_header
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x83 in position 0: invalid start byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x83 in position 0: invalid start byte
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 16: invalid continuation byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe9 in position 16: invalid continuation byte
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 918, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 2042, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 1 fields in line 25, saw 3
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 10, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 918, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 905, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 2042, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 40 fields in line 821, saw 41
+
