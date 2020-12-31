@@ -14,7 +14,7 @@ data = pd.read_csv(path)
 nr_cols = len(data.columns)
 if nr_cols > 10:
     data = data.iloc[:,range(0,10)]
-#fdata = data.apply(lambda x: x.factorize()[0])
+data.dropna(inplace=True)
 
 # get basic info on columns
 types = data.dtypes

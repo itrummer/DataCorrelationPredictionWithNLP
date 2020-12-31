@@ -1,0 +1,59 @@
+rm: cannot remove '../data/corresult2.csv': No such file or directory
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe8 in position 3: invalid continuation byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 13, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe8 in position 3: invalid continuation byte
+Traceback (most recent call last):
+  File "pandas/_libs/parsers.pyx", line 1119, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 4: invalid continuation byte
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "coranalyze.py", line 13, in <module>
+    data = pd.read_csv(path)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 686, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 458, in _read
+    data = parser.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 1186, in read
+    ret = self._engine.read(nrows)
+  File "/home/ubuntu/.local/lib/python3.6/site-packages/pandas/io/parsers.py", line 2145, in read
+    data = self._reader.read(nrows)
+  File "pandas/_libs/parsers.pyx", line 847, in pandas._libs.parsers.TextReader.read
+  File "pandas/_libs/parsers.pyx", line 862, in pandas._libs.parsers.TextReader._read_low_memory
+  File "pandas/_libs/parsers.pyx", line 941, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 1073, in pandas._libs.parsers.TextReader._convert_column_data
+  File "pandas/_libs/parsers.pyx", line 1126, in pandas._libs.parsers.TextReader._convert_tokens
+  File "pandas/_libs/parsers.pyx", line 1244, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "pandas/_libs/parsers.pyx", line 1259, in pandas._libs.parsers.TextReader._string_convert
+  File "pandas/_libs/parsers.pyx", line 1450, in pandas._libs.parsers._string_box_utf8
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xf3 in position 4: invalid continuation byte
