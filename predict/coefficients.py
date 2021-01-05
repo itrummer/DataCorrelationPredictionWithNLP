@@ -3,6 +3,7 @@ from simpletransformers.classification import (
     ClassificationModel, ClassificationArgs
 )
 from sklearn.model_selection import train_test_split
+from spellchecker import SpellChecker
 import numpy as np
 import sklearn.metrics as metrics
 import pandas as pd
@@ -120,7 +121,8 @@ weights = [nr_all/nr_zeros, nr_all/nr_ones]
 
 # train classification model
 w_name = f'{coeff};{min_v1};{max_v2};{mod_type};{mod_name};{scenario}'
-model_args = ClassificationArgs(num_train_epochs=1, train_batch_size=100,
+model_args = ClassificationArgs(num_train_epochs=5, train_batch_size=100, 
+                                eval_batch_size=100,
                                 overwrite_output_dir=True, manual_seed=seed,
                                 evaluate_during_training=True, no_save=True,
                                 wandb_project='CorrelationPredictionv1',
@@ -130,15 +132,45 @@ model = ClassificationModel(mod_type, mod_name, weight=weights,
 model.train_model(train_df=train, eval_df=test, acc=metrics.accuracy_score, 
     rec=metrics.recall_score, pre=metrics.precision_score, f1=metrics.f1_score)
 
+# a simple baseline determining correlation based on Jaccard similarity
+def baseline(col_pairs):
+    predictions = []
+    for cp in col_pairs:
+        c1 = cp[0]
+        c2= cp[1]
+        s1 = set(c1.split())
+        s2 = set(c2.split())
+        ns1 = len(s1)
+        ns2 = len(s2)
+        ni = len(set.intersection(s1, s2))
+        # calculate Jaccard coefficient
+        jac = ni / (ns1 + ns2 - ni)
+        # predict correlation if similar
+        if jac > 0.5:
+            predictions.append(1)
+        else:
+            predictions.append(0)
+    return predictions
+
 # log all metrics into summary for data subset
-def log_metrics(sub_test, test_name):
-    sub_test.columns = ['text_a', 'text_b', 'labels', 'length', 'nrtokens']
+def log_metrics(sub_test, test_name, lb, ub, pred_method):
+    sub_test.columns = ['text_a', 'text_b', 'labels', 
+            'length', 'nrtokens', 'wordratio']
+    # print out a sample for later analysis
+    print(f'Sample for test {test_name}:')
+    sample = sub_test.sample(frac=0.1)
+    print(sample)
+    # predict correlation via baseline or model
     sub_test = sub_test[['text_a', 'text_b', 'labels']]
     samples = []
     for ri, r in sub_test.iterrows():
         samples.append([r['text_a'], r['text_b']])
     s_time = time.time()
-    preds = model.predict(samples)[0]
+    if pred_method == 0:
+        preds = baseline(samples)
+    else:
+        preds = model.predict(samples)[0]
+    # log various performance metrics
     t_time = time.time() - s_time
     nr_samples = len(sub_test.index)
     t_per_s = float(t_time) / nr_samples
@@ -153,15 +185,17 @@ def log_metrics(sub_test, test_name):
     acc_name = f'{test_name}acc'
     mcc_name = f'{test_name}mcc'
     tps_name = f'{test_name}tps'
+    lb_name = f'{test_name}lb'
+    ub_name = f'{test_name}ub'
     wandb.log({f1_name : f1, pre_name : pre, rec_name : rec, 
-        acc_name : acc, mcc_name : mcc, tps_name : t_per_s})
-    #wandb.run.summary[test_name + 'f1'] = f1
-    #wandb.run.summary[test_name + 'pre'] = pre
-    #wandb.run.summary[test_name + 'rec'] = rec
-    #wandb.run.summary[test_name + 'acc'] = acc
-    #wandb.run.summary[test_name + 'mcc'] = mcc
-    #wandb.run.summary[test_name + 'tps'] = t_per_s
-    #wandb.run.summary.update()
+        acc_name : acc, mcc_name : mcc, tps_name : t_per_s,
+        lb_name : lb, ub_name : ub})
+    # also log to local file
+    with open('results.csv', 'a+') as file:
+        file.write(f'{coeff},{min_v1},{max_v2},"{mod_type}",' \
+                f'"{mod_name}","{scenario}",{test_ratio},' \
+                f'"{test_name}",{pred_method},{lb},{ub},' \
+                f'{f1},{pre},{rec},{acc},{mcc},{t_per_s}\n')
 
 # test dependency on column name properties
 def names_length(row):
@@ -170,27 +204,39 @@ test['length'] = test.apply(names_length, axis=1)
 def names_tokens(row):
     return row['text_a'].count(' ') + row['text_b'].count(' ')
 test['nrtokens'] = test.apply(names_tokens, axis=1)
+spell = SpellChecker(distance=0)
+def word_ratio(row):
+    col_text = row['text_a'] + ' ' + row['text_b']
+    tokens = col_text.split()
+    nr_tokens = len(tokens)
+    nr_words = len(spell.known(tokens))
+    return float(nr_words) / nr_tokens
+test['wordratio'] = test.apply(word_ratio, axis=1)
 
-for q in [(0, 0.25), (0.25, 0.5), (0.5, 1)]:
-    qlb = q[0]
-    qub = q[1]
-    # column name length
-    lb = test['length'].quantile(qlb)
-    ub = test['length'].quantile(qub)
-    sub_test = test[(test['length'] >= lb) & (test['length'] <= ub)]
-    test_name = f'L{lb}-{ub}'
-    log_metrics(sub_test, test_name)
-    # data set size
-    lb = test['nrtokens'].quantile(qlb)
-    ub = test['nrtokens'].quantile(qub)
-    sub_test = test[(test['nrtokens'] >= lb) & (test['nrtokens'] <= ub)]
-    test_name = f'N{lb}-{ub}'
-    log_metrics(sub_test, test_name)
-
-# test dependency on column types
-#ptypes = ['int64', 'float64', 'object', 'bool', 'datetime64', 'timedelta[ns]', 'category']
-#for c1_type in ptypes:
-#    for c2_type in ptypes:
-#        sub_test = test[(test['type1'] == c1_type) & (test['type2'] == c2_type)]
-#        test_name = f'T{c1_type}-{c2_type}'
-#        log_metrics(sub_test, test_name)
+# use simple baseline and model for prediction
+for m in [0, 1]:
+    # use entire test set (redundant - for verification)
+    test_name = f'{m}-final'
+    log_metrics(test, test_name, 0, 'inf', m)
+    # test for different subsets
+    for q in [(0, 0.25), (0.25, 0.5), (0.5, 1)]:
+        qlb = q[0]
+        qub = q[1]
+        # column name length
+        lb = test['length'].quantile(qlb)
+        ub = test['length'].quantile(qub)
+        sub_test = test[(test['length'] >= lb) & (test['length'] <= ub)]
+        test_name = f'L{m}-{qlb}-{qub}'
+        log_metrics(sub_test, test_name, lb, ub, m)
+        # number of tokens in column names
+        lb = test['nrtokens'].quantile(qlb)
+        ub = test['nrtokens'].quantile(qub)
+        sub_test = test[(test['nrtokens'] >= lb) & (test['nrtokens'] <= ub)]
+        test_name = f'N{m}-{qlb}-{qub}'
+        log_metrics(sub_test, test_name, lb, ub, m)
+        # ratio of English words in column names
+        lb = test['wordratio'].quantile(qlb)
+        ub = test['wordratio'].quantile(qub)
+        sub_test = test[(test['wordratio'] >= lb) & (test['wordratio'] <= ub)]
+        test_name = f'W{m}-{qlb}-{qub}'
+        log_metrics(sub_test, test_name, lb, ub, m)
