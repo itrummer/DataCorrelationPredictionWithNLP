@@ -121,7 +121,8 @@ weights = [nr_all/nr_zeros, nr_all/nr_ones]
 
 # train classification model
 w_name = f'{coeff};{min_v1};{max_v2};{mod_type};{mod_name};{scenario}'
-model_args = ClassificationArgs(num_train_epochs=5, train_batch_size=100, 
+s_time = time.time()
+model_args = ClassificationArgs(num_train_epochs=10, train_batch_size=100, 
                                 eval_batch_size=100,
                                 overwrite_output_dir=True, manual_seed=seed,
                                 evaluate_during_training=True, no_save=True,
@@ -131,6 +132,7 @@ model = ClassificationModel(mod_type, mod_name, weight=weights,
                             use_cuda = True, args=model_args)
 model.train_model(train_df=train, eval_df=test, acc=metrics.accuracy_score, 
     rec=metrics.recall_score, pre=metrics.precision_score, f1=metrics.f1_score)
+training_time = time.time() - s_time
 
 # a simple baseline determining correlation based on Jaccard similarity
 def baseline(col_pairs):
@@ -195,7 +197,8 @@ def log_metrics(sub_test, test_name, lb, ub, pred_method):
         file.write(f'{coeff},{min_v1},{max_v2},"{mod_type}",' \
                 f'"{mod_name}","{scenario}",{test_ratio},' \
                 f'"{test_name}",{pred_method},{lb},{ub},' \
-                f'{f1},{pre},{rec},{acc},{mcc},{t_per_s}\n')
+                f'{f1},{pre},{rec},{acc},{mcc},{t_per_s},' \
+                f'{training_time}\n')
 
 # test dependency on column name properties
 def names_length(row):
