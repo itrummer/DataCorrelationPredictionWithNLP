@@ -34,7 +34,7 @@ seed = 42
 rand.seed(seed)
 
 # load data
-path = '../data/corresult4.csv'
+path = 'data/corresult4.csv'
 data = pd.read_csv(path, sep = ',')
 data = data.sample(frac=1, random_state=seed)
 data.columns = ['dataid', 'datapath', 'nrrows', 'nrvals1', 'nrvals2', 
@@ -129,7 +129,7 @@ model_args = ClassificationArgs(num_train_epochs=10, train_batch_size=100,
                                 wandb_project='CorrelationPredictionv1',
                                 wandb_kwargs={'name': w_name})
 model = ClassificationModel(mod_type, mod_name, weight=weights,
-                            use_cuda = True, args=model_args)
+                            use_cuda = False, args=model_args)
 model.train_model(train_df=train, eval_df=test, acc=metrics.accuracy_score, 
     rec=metrics.recall_score, pre=metrics.precision_score, f1=metrics.f1_score)
 training_time = time.time() - s_time
