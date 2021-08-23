@@ -67,13 +67,17 @@ def labeled_data(df):
     Returns:
         labeled data set in HG format
     """
-    df['labels'] = df.apply(is_correlated, axis='columns')
+    labels = df.apply(is_correlated, axis='columns')
     features = Features({
         'column1':Value('string'), 
         'column2':Value('string'), 
         'labels':ClassLabel(
             num_classes=2, 
             names=['Uncorrelated', 'Correlated'])})
+    df = pd.DataFrame({
+        'column1':df['column1'], 
+        'column2':df['column2'], 
+        'labels':labels})
     return Dataset.from_pandas(df, features)
 
 if __name__ == '__main__':
