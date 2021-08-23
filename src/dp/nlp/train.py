@@ -53,7 +53,7 @@ if __name__ == '__main__':
 
     training_args = transformers.TrainingArguments(
         output_dir='./results', num_train_epochs=5,
-        per_device_train_batch_size=100, per_device_eval_batch_size=100,
+        per_device_train_batch_size=16, per_device_eval_batch_size=16,
         save_strategy=transformers.trainer_utils.IntervalStrategy.NO,
         report_to=None
     )
