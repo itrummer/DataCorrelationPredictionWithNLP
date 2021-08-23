@@ -52,10 +52,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     training_args = transformers.TrainingArguments(
-        output_dir='./results',
-        num_train_epochs=5,
-        per_device_train_batch_size=1,
-        per_device_eval_batch_size=1,
+        output_dir='./results', num_train_epochs=5,
+        per_device_train_batch_size=100, per_device_eval_batch_size=100,
+        save_strategy=transformers.trainer_utils.IntervalStrategy.NO,
         report_to=None
     )
     
@@ -63,7 +62,6 @@ if __name__ == '__main__':
         'roberta-base')
     
     train_data = datasets.load_from_disk(args.in_path)
-    print(train_data['column1'])
 
     train_data = CorrelationDS(
         train_data['column1'], train_data['column2'], train_data['labels'])
