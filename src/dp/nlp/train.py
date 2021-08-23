@@ -57,7 +57,7 @@ class CorrelationTrainer(transformers.Trainer):
             class_weights: assigns a weight to each class
         """
         super().__init__(*args, **kwargs)
-        self.class_weights = torch.Tensor(class_weights)
+        self.class_weights = torch.Tensor(class_weights).to('cuda')
     
     def compute_loss(self, model, inputs, return_outputs=False):
         """ Compute loss using class weights.
@@ -98,7 +98,7 @@ if __name__ == '__main__':
 
     training_args = transformers.TrainingArguments(
         output_dir='./results', num_train_epochs=5,
-        per_device_train_batch_size=8, per_device_eval_batch_size=8,
+        per_device_train_batch_size=32, per_device_eval_batch_size=32,
         save_strategy=transformers.trainer_utils.IntervalStrategy.NO,
         report_to=None
     )
@@ -111,4 +111,4 @@ if __name__ == '__main__':
         train_dataset=train_data, 
         class_weights=class_weights)
     trainer.train()
-    model.save_pretrained(args.outpath)
+    model.save_pretrained(args.out_path)
