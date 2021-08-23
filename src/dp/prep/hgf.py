@@ -89,6 +89,7 @@ if __name__ == '__main__':
     train_samples, test_samples = split_data(df)
     
     train_ds = labeled_data(train_samples)
+    train_ds = train_ds.shuffle()
     train_ds.save_to_disk('data/train.ds')
     test_ds = labeled_data(test_samples)
     test_ds.save_to_disk('data/test.ds')

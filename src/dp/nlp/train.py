@@ -5,6 +5,8 @@ Created on Aug 22, 2021
 '''
 import argparse
 import datasets
+from sklearn.utils.class_weight import compute_class_weight, compute_sample_weight
+import torch
 import torch.utils.data
 import transformers
 
@@ -44,16 +46,58 @@ class CorrelationDS(torch.utils.data.Dataset):
         """ Returns number of items. """
         return len(self.labels)
 
+
+class CorrelationTrainer(transformers.Trainer):
+    """ Customized trainer using class weights. """
+    
+    def __init__(self, class_weights, *args, **kwargs):
+        """ Initializes custom trainer.
+        
+        Args:
+            class_weights: assigns a weight to each class
+        """
+        super().__init__(*args, **kwargs)
+        self.class_weights = torch.Tensor(class_weights)
+    
+    def compute_loss(self, model, inputs, return_outputs=False):
+        """ Compute loss using class weights.
+        
+        Args:
+            model: compute loss for this model
+            inputs: batch of training samples
+            return_outputs: whether we return outputs as well
+        
+        Returns:
+            outputs and loss or loss alone
+        """
+        labels = inputs.pop('labels')
+        batch_size = labels.shape[0]
+        labels = torch.zeros(batch_size, 2).scatter_(1, labels.unsqueeze(1), 1)
+        outputs = model(**inputs)
+        logits = outputs.logits
+        loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=self.class_weights)
+        loss = loss_fct(logits.view(-1, 2), labels.float().view(-1, 2))
+        return (loss, outputs) if return_outputs else loss
+
+
 if __name__ == '__main__':
     
     parser = argparse.ArgumentParser()
     parser.add_argument('in_path', type=str, help='Path to input file')
     parser.add_argument('out_path', type=str, help='Path to output model')
     args = parser.parse_args()
+        
+    train_data = datasets.load_from_disk(args.in_path)
+    labels = train_data['labels']
+    class_weights = compute_class_weight(
+        'balanced', [0, 1], labels)
+    train_data = CorrelationDS(
+        train_data['column1'], train_data['column2'],
+        train_data['labels'])
 
     training_args = transformers.TrainingArguments(
         output_dir='./results', num_train_epochs=5,
-        per_device_train_batch_size=16, per_device_eval_batch_size=16,
+        per_device_train_batch_size=8, per_device_eval_batch_size=8,
         save_strategy=transformers.trainer_utils.IntervalStrategy.NO,
         report_to=None
     )
@@ -61,11 +105,9 @@ if __name__ == '__main__':
     model = transformers.RobertaForSequenceClassification.from_pretrained(
         'roberta-base')
     
-    train_data = datasets.load_from_disk(args.in_path)
-
-    train_data = CorrelationDS(
-        train_data['column1'], train_data['column2'], train_data['labels'])
-    trainer = transformers.Trainer(
-        model=model, args=training_args, 
-        train_dataset=train_data)
+    trainer = CorrelationTrainer(
+        model=model, args=training_args,
+        train_dataset=train_data, 
+        class_weights=class_weights)
     trainer.train()
+    model.save_pretrained(args.outpath)
