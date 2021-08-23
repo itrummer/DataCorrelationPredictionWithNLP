@@ -56,5 +56,5 @@ if __name__ == '__main__':
     predictions = predictions[:,1]
     
     df = data.to_pandas()
-    df['predictions'] = predictions
+    df['predictions'] = predictions.to('cpu')
     df.to_csv(args.out_path)
