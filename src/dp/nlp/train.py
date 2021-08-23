@@ -72,7 +72,8 @@ class CorrelationTrainer(transformers.Trainer):
         """
         labels = inputs.pop('labels')
         batch_size = labels.shape[0]
-        labels = torch.zeros(batch_size, 2).scatter_(1, labels.unsqueeze(1), 1)
+        labels = torch.zeros(batch_size, 2, device='cuda').scatter_(
+            1, labels.unsqueeze(1), 1)
         outputs = model(**inputs)
         logits = outputs.logits
         loss_fct = torch.nn.BCEWithLogitsLoss(pos_weight=self.class_weights)
