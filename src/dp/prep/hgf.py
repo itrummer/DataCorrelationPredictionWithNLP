@@ -20,7 +20,7 @@ def load_data(in_path, cor_type):
     """
     df = pd.read_csv(in_path, sep=',')
     df.columns = [
-        'dataid', 'datapath', 'nrrows', 'nrvals1', 'nrvals2', 
+        'dataid', 'datapath', 'nrrows', 'nrvals1', 'nrvals2',
         'type1', 'type2', 'column1', 'column2', 'method',
         'coefficient', 'pvalue', 'time']
     return df.query(f'method=="{cor_type}"')
@@ -68,13 +68,22 @@ def labeled_data(df):
         labeled data set in HG format
     """
     labels = df.apply(is_correlated, axis='columns')
+    print(df.info())
     features = Features({
+        'dataid':Value('int64'),
+        'nrrows':Value('int64'),
+        'coefficient':Value('float64'),
+        'pvalue':Value('float64'),
         'column1':Value('string'), 
         'column2':Value('string'), 
         'labels':ClassLabel(
             num_classes=2, 
             names=['Uncorrelated', 'Correlated'])})
     df = pd.DataFrame({
+        'dataid':df['dataid'],
+        'nrrows':df['nrrows'],
+        'coefficient':df['coefficient'],
+        'pvalue':df['pvalue'],
         'column1':df['column1'], 
         'column2':df['column2'], 
         'labels':labels})
