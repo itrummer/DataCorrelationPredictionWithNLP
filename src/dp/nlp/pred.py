@@ -7,6 +7,7 @@ import argparse
 import datasets
 import dp.nlp.common
 import os
+import time
 import torch
 from transformers import RobertaForSequenceClassification
 from transformers import RobertaTokenizer
@@ -50,7 +51,12 @@ if __name__ == '__main__':
     test_data = dp.nlp.common.CorrelationDS(
         data['column1'], data['column2'], data['labels'])
     trainer = Trainer(model=model, tokenizer=tokenizer)
+    
+    start_s = time.time()
     predictions = trainer.predict(test_data)
+    total_s = time.time() - start_s
+    print(f'Prediction took {total_s} seconds.')
+    
     predictions = torch.Tensor(predictions.predictions).to(device)
     predictions = torch.softmax(predictions, -1)
     predictions = predictions[:,1]
