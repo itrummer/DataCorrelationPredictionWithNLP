@@ -71,21 +71,35 @@ def labeled_data(df):
     print(df.info())
     features = Features({
         'dataid':Value('int64'),
+        'datapath':Value('string'),
         'nrrows':Value('int64'),
+        'nrvals1':Value('int64'),
+        'nrvals2':Value('int64'),
+        'type1':Value('string'),
+        'type2':Value('string'),
+        'column1':Value('string'), 
+        'column2':Value('string'),
+        'method':Value('string'),
         'coefficient':Value('float64'),
         'pvalue':Value('float64'),
-        'column1':Value('string'), 
-        'column2':Value('string'), 
+        'time':Value('float64'),
         'labels':ClassLabel(
             num_classes=2, 
             names=['Uncorrelated', 'Correlated'])})
     df = pd.DataFrame({
         'dataid':df['dataid'],
+        'datapath':df['datapath'],
         'nrrows':df['nrrows'],
+        'nrvals1':df['nrvals1'],
+        'nrvals2':df['nrvals2'],
+        'type1':df['type1'],
+        'type2':df['type2'],
+        'column1':df['column1'], 
+        'column2':df['column2'],
+        'method':df['method'],
         'coefficient':df['coefficient'],
         'pvalue':df['pvalue'],
-        'column1':df['column1'], 
-        'column2':df['column2'], 
+        'time':df['time'],
         'labels':labels})
     return Dataset.from_pandas(df, features)
 
