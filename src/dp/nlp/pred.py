@@ -7,7 +7,7 @@ import argparse
 import datasets
 import dp.nlp.common
 import os
-from sentence_transformers import SentenceTransformer, util
+from sentence_transformers import SentenceTransformer
 import time
 import torch
 from transformers import RobertaForSequenceClassification
@@ -48,12 +48,12 @@ if __name__ == '__main__':
     df = data.to_pandas()
     nr_pairs = df.shape[0]
     tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
-    model = RobertaForSequenceClassification.from_pretrained(args.model_path)
+    p_model = RobertaForSequenceClassification.from_pretrained(args.model_path)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     
     test_data = dp.nlp.common.CorrelationDS(
         data['column1'], data['column2'], data['labels'])
-    trainer = Trainer(model=model, tokenizer=tokenizer)
+    trainer = Trainer(model=p_model, tokenizer=tokenizer)
     
     start_s = time.time()
     predictions = trainer.predict(test_data)
@@ -67,6 +67,7 @@ if __name__ == '__main__':
     predictions = predictions[:,1]
     df['predictions'] = predictions.to('cpu')
     
+    model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
     start_s = time.time()
     df['embedding1'] = model.encode(df['column1'], convert_to_tensor=True)
     df['embedding2'] = model.encode(df['column2'], convert_to_tensor=True)
