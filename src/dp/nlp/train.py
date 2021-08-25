@@ -7,6 +7,7 @@ import argparse
 import datasets
 from dp.nlp.common import CorrelationDS
 from sklearn.utils.class_weight import compute_class_weight
+import time
 import torch
 import transformers
 
@@ -73,5 +74,10 @@ if __name__ == '__main__':
         model=model, args=training_args,
         train_dataset=train_data, 
         class_weights=class_weights)
+    
+    start_s = time.time()
     trainer.train()
+    total_s = time.time() - start_s
+    print(f'Training time: {total_s}')
+    
     model.save_pretrained(args.out_path)
