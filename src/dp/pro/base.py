@@ -55,10 +55,6 @@ if __name__ == '__main__':
         embedding1 = row['embedding1']
         embedding2 = row['embedding2']
         return util.pytorch_cos_sim(embedding1, embedding2)
-    
-    model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
-    df['embedding1'] = model.encode(df['column1'], convert_to_tensor=True)
-    df['embedding2'] = model.encode(df['column2'], convert_to_tensor=True)
     df['similarity'] = df.apply(lambda r:similarity(r), axis='columns')
     df.sort_values(axis=0, ascending=False, inplace=True, by='similarity')
     write_stats(df, f'{args.out_pre}similarity.csv')

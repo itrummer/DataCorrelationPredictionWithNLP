@@ -7,6 +7,7 @@ import argparse
 import datasets
 import dp.nlp.common
 import os
+from sentence_transformers import SentenceTransformer, util
 import time
 import torch
 from transformers import RobertaForSequenceClassification
@@ -44,6 +45,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     data = datasets.load_from_disk(args.in_path)
+    df = data.to_pandas()
+    nr_pairs = df.shape[0]
     tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
     model = RobertaForSequenceClassification.from_pretrained(args.model_path)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -55,12 +58,21 @@ if __name__ == '__main__':
     start_s = time.time()
     predictions = trainer.predict(test_data)
     total_s = time.time() - start_s
-    print(f'Prediction took {total_s} seconds.')
+    avg_s = total_s / nr_pairs
+    df['ptime'] = avg_s
+    print(f'Prediction took {total_s} seconds (avg: {avg_s}).')
     
     predictions = torch.Tensor(predictions.predictions).to(device)
     predictions = torch.softmax(predictions, -1)
     predictions = predictions[:,1]
-    
-    df = data.to_pandas()
     df['predictions'] = predictions.to('cpu')
+    
+    start_s = time.time()
+    df['embedding1'] = model.encode(df['column1'], convert_to_tensor=True)
+    df['embedding2'] = model.encode(df['column2'], convert_to_tensor=True)
+    total_s = time.time() - start_s
+    avg_s = total_s / nr_pairs
+    df['etime'] = avg_s
+    print(f'Embedding took {total_s} seconds (avg: {avg_s}).')
+    
     df.to_csv(args.out_path)
