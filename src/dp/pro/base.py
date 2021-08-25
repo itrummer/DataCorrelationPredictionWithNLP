@@ -14,13 +14,12 @@ def write_stats(df, out_path):
         df: data frame with method-specific row order
         out_path: write statistics into this file
     """
-    # cost = df['time'].cumsum()
+    df['rows'] = df['nrrows'].cumsum()
+    df['time'] = df['time'].cumsum()
     df['hits'] = df['labels'].cumsum()
-    # stats = pd.DataFrame([cost, hits])
-    # stats.columns = ['cost', 'hits']
     df = df.reset_index()
     df.index.name = 'step'
-    df = df.loc[::100,['hits', 'column1', 'column2']]
+    df = df.loc[::100,['rows', 'time', 'hits', 'column1', 'column2']]
     df.to_csv(out_path)
 
 if __name__ == '__main__':
@@ -31,6 +30,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     df = pd.read_csv(args.in_path, sep=',')
+    
+    # TODO: Remove again!
+    df = df.query('nrrows >= 100')
+    
     print(df.info())
     write_stats(df, f'{args.out_pre}bydata.csv')
     
@@ -43,8 +46,9 @@ if __name__ == '__main__':
     write_stats(df, f'{args.out_pre}random.csv')
     
     def priority(row):
-        pass
+        return row['predictions'] * (2 if len(row['column1']) > 50 else 1)
     df['priority'] = df.apply(lambda r:priority(r), axis='columns')
+    
     df.sort_values(
         axis=0, ascending=False, 
         inplace=True, by='priority')
