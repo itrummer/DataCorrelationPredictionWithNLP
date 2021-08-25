@@ -5,6 +5,7 @@ Created on Aug 23, 2021
 '''
 import argparse
 import pandas as pd
+from sentence_transformers import SentenceTransformer, util
 
 
 def write_stats(df, out_path):
@@ -31,9 +32,6 @@ if __name__ == '__main__':
     
     df = pd.read_csv(args.in_path, sep=',')
     
-    # TODO: Remove again!
-    df = df.query('nrrows >= 100')
-    
     print(df.info())
     write_stats(df, f'{args.out_pre}bydata.csv')
     
@@ -47,9 +45,20 @@ if __name__ == '__main__':
     
     def priority(row):
         return row['predictions'] * (2 if len(row['column1']) > 50 else 1)
-    df['priority'] = df.apply(lambda r:priority(r), axis='columns')
-    
+    df['priority'] = df.apply(lambda r:priority(r), axis='columns')    
     df.sort_values(
         axis=0, ascending=False, 
         inplace=True, by='priority')
     write_stats(df, f'{args.out_pre}priority.csv')
+    
+    def similarity(row):
+        embedding1 = row['embedding1']
+        embedding2 = row['embedding2']
+        return util.pytorch_cos_sim(embedding1, embedding2)
+    
+    model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
+    df['embedding1'] = model.encode(df['column1'], convert_to_tensor=True)
+    df['embedding2'] = model.encode(df['column2'], convert_to_tensor=True)
+    df['similarity'] = df.apply(lambda r:similarity(r), axis='columns')
+    df.sort_values(axis=0, ascending=False, inplace=True, by='similarity')
+    write_stats(df, f'{args.out_pre}similarity.csv')

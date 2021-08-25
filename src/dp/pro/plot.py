@@ -16,8 +16,8 @@ if __name__ == '__main__':
     
     _, axes = plt.subplots(nrows=2, ncols=1, figsize=(3.5,2.5))
     for file_name in [
-        'alltablesbydata.csv', 'alltablespriority.csv', 
-        'alltablesrandom.csv', 'alltablessimple.csv']:
+        'alltablesbydata.csv', 'alltablespriority.csv', 'alltablesrandom.csv', 
+        'alltablessimple.csv', 'alltablessimilarity.csv']:
         df = pd.read_csv(f'{args.in_dir}/{file_name}')
         hits = df.loc[:,'hits']
         step = df.loc[:,'step']
