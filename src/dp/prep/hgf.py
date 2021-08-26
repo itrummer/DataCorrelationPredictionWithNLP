@@ -107,12 +107,13 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser()
     parser.add_argument('in_path', type=str, help='Path to input file')
+    parser.add_argument('method', type=str, help='Correlation type')
     args = parser.parse_args()
-    df = load_data(args.in_path, 'pearson')
+    df = load_data(args.in_path, args.method)
     train_samples, test_samples = split_data(df)
     
     train_ds = labeled_data(train_samples)
     train_ds = train_ds.shuffle()
-    train_ds.save_to_disk('data/train.ds')
+    train_ds.save_to_disk(f'data/{args.method}/train.ds')
     test_ds = labeled_data(test_samples)
-    test_ds.save_to_disk('data/test.ds')
+    test_ds.save_to_disk(f'data/{args.method}/test.ds')
