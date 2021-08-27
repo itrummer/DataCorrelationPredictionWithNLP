@@ -140,5 +140,5 @@ if __name__ == '__main__':
     train_ds = labeled_data(train_samples, args.criterion)
     train_ds = train_ds.shuffle()
     train_ds.save_to_disk(f'data/{args.method}/train.ds')
-    test_ds = labeled_data(test_samples)
+    test_ds = labeled_data(test_samples, args.criterion)
     test_ds.save_to_disk(f'data/{args.method}/test.ds')
