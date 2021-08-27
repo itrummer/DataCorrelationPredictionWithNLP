@@ -7,32 +7,11 @@ import argparse
 import datasets
 import dp.nlp.common
 import os
-from sentence_transformers import SentenceTransformer
 import time
 import torch
 from transformers import RobertaForSequenceClassification
 from transformers import RobertaTokenizer
 from transformers import Trainer
-
-# def predict(tokenizer, model, row):
-    # """ Predict correlation for current row.
-    #
-    # Args:
-        # tokenizer: tokenizer for model
-        # model: correlation prediction model
-        # row: describes a column pair
-        #
-    # Returns:
-        # probability of correlation between columns
-    # """
-    # column_1 = row['column1']
-    # column_2 = row['column2']
-    # encodings = tokenizer(
-        # column_1, column_2, 
-        # truncation=True, padding=True, 
-        # return_tensors='pt')
-    # out = model(**encodings)
-    # return torch.softmax(out.logits[0], 0)[1]
 
 if __name__ == '__main__':
     
@@ -66,16 +45,5 @@ if __name__ == '__main__':
     predictions = torch.softmax(predictions, -1)
     predictions = predictions[:,1]
     df['predictions'] = predictions.to('cpu')
-    
-    # model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
-    # start_s = time.time()
-    # df['embedding1'] = model.encode(
-        # df['column1'], convert_to_tensor=True).to('cpu')
-    # df['embedding2'] = model.encode(
-        # df['column2'], convert_to_tensor=True).to('cpu')
-    # total_s = time.time() - start_s
-    # avg_s = total_s / nr_pairs
-    # df['etime'] = avg_s
-    # print(f'Embedding took {total_s} seconds (avg: {avg_s}).')
     
     df.to_csv(args.out_path)
