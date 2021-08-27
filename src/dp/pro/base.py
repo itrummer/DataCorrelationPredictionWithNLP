@@ -48,13 +48,13 @@ if __name__ == '__main__':
         df = df.sample(frac=1)
         write_stats(df, f'{prefix}random.csv', scale, 0)
         
-        def priority(row):
-            return row['predictions'] * (2 if len(row['column1']) > 50 else 1)
-        df['priority'] = df.apply(lambda r:priority(r), axis='columns')    
-        df.sort_values(
-            axis=0, ascending=False, 
-            inplace=True, by='priority')
-        write_stats(df, f'{prefix}priority.csv', scale, 26)
+        # def priority(row):
+            # return row['predictions'] * (2 if len(str(row['column1'])) > 50 else 1)
+        # df['priority'] = df.apply(lambda r:priority(r), axis='columns')    
+        # df.sort_values(
+            # axis=0, ascending=False, 
+            # inplace=True, by='priority')
+        # write_stats(df, f'{prefix}priority.csv', scale, 26)
     
     # def similarity(row):
         # embedding1 = row['embedding1']

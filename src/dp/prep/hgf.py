@@ -44,8 +44,10 @@ def split_data(df):
     test_samples = df.query(f'dataid in {test_ds}')
     return train_samples, test_samples
 
-def is_correlated(row):
+def is_correlated_1(row):
     """ Check whether two columns are considered correlated.
+    
+    This version is used for Pearson and Spearman correlation.
     
     Args:
         row: a row describing relationship between two columns
@@ -53,21 +55,43 @@ def is_correlated(row):
     Returns:
         true iff the two columns are correlated
     """
-    if row['coefficient'] >= 0.95 and row['pvalue'] <= 0.05:
+    if abs(row['coefficient']) >= 0.95 and row['pvalue'] <= 0.05:
         return 1
     else:
         return 0
 
-def labeled_data(df):
+def is_correlated_2(row):
+    """ Check whether two columns are considered correlated.
+    
+    This version is used for Theil's U correlation.
+    
+    Args:
+        row: a row describing relationship between two columns
+    
+    Returns:
+        true iff the two columns are correlated
+    """
+    if abs(row['coefficient']) >= 0.95:
+        return 1
+    else:
+        return 0
+
+def labeled_data(df, cor_type):
     """ Create data set and label data.
     
     Args:
         df: data frame without labels
+        cor_type: ID of correlation metric
     
     Returns:
         labeled data set in HG format
     """
-    labels = df.apply(is_correlated, axis='columns')
+    if cor_type:
+        print('Applying first correlation metric (Pearson, Spearman)')
+        labels = df.apply(is_correlated_1, axis='columns')
+    else:
+        print('Applying second correlation metric (Theil''s U)')
+        labels = df.apply(is_correlated_2, axis='columns')
     print(df.info())
     features = Features({
         'dataid':Value('int64'),
@@ -108,11 +132,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('in_path', type=str, help='Path to input file')
     parser.add_argument('method', type=str, help='Correlation type')
+    parser.add_argument('criterion', type=str, help='Criterion 0 or 1')
     args = parser.parse_args()
     df = load_data(args.in_path, args.method)
     train_samples, test_samples = split_data(df)
     
-    train_ds = labeled_data(train_samples)
+    train_ds = labeled_data(train_samples, args.criterion)
     train_ds = train_ds.shuffle()
     train_ds.save_to_disk(f'data/{args.method}/train.ds')
     test_ds = labeled_data(test_samples)
