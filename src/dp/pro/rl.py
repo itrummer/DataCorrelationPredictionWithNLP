@@ -26,6 +26,7 @@ class CordulaGym(gym.Env):
             data_sacling: scaling factor for data processing
         """
         self.df = pd.read_csv(pred_path, sep=',')
+        self.df = self.df.sample(frac=1)
         self.nr_pairs = self.df.shape[0]
         self.data_scaling = data_scaling
         self.pred_per_step = round(
@@ -63,7 +64,7 @@ class CordulaGym(gym.Env):
                 row = self.df.loc[self.next_pair]
                 label = row['labels']
                 cost = row['time']
-                self.sim_time += cost
+                self.sim_time += cost * self.data_scaling
                 self.next_pair += 1
                 if label:
                     cur_nr_hits += 1
@@ -72,7 +73,7 @@ class CordulaGym(gym.Env):
             deadline = self.sim_time + self.step_s
             while self.sim_time < deadline and self.heap:
                 pred, label, cost = heapq.heappop(self.heap)
-                self.sim_time += cost
+                self.sim_time += cost * self.data_scaling
                 if label:
                     cur_nr_hits += 1
         
@@ -98,6 +99,7 @@ if __name__ == '__main__':
     
     parser = argparse.ArgumentParser()
     parser.add_argument('in_path', type=str, help='Path to input prediction file')
+    parser.add_argument('out_dir', type=str, help='Directory for output files')
     args = parser.parse_args()
     
     for scale in [1, 10, 100, 1000]:
@@ -110,7 +112,7 @@ if __name__ == '__main__':
         log_df = pd.DataFrame(env.log_hits, columns=['ctime','chits'])
         log_df['crows'] = 0
         log_df['step'] = 0
-        log_df.to_csv(f'results/alltables_F{scale}_rl.csv')
+        log_df.to_csv(f'{args.out_dir}/alltables_F{scale}_rl.csv')
     
     #
     #

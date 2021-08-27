@@ -4,6 +4,7 @@ Created on Aug 24, 2021
 @author: immanueltrummer
 '''
 import argparse
+import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -14,21 +15,30 @@ if __name__ == '__main__':
     parser.add_argument('out_dir', type=str, help='Path to output directory')
     args = parser.parse_args()
     
-    for scale in [1, 10, 100, 1000]:
-        _, axes = plt.subplots(nrows=2, ncols=1, figsize=(3.5,2.5))
-        # for file_name in [
-            # 'alltablesbydata.csv', 'alltablespriority.csv', 'alltablesrandom.csv', 
-            # 'alltablessimple.csv', 'alltablessimilarity.csv', 'alltablesrl.csv']:
-        for file_name in [f'alltables_F{scale}_rl.csv', 
-                          f'alltables_F{scale}_random.csv', 
-                          f'alltables_F{scale}_simple.csv']:
+    plt.rcParams.update({'text.usetex': True, 'font.size':9})
+    
+    _, axes = plt.subplots(nrows=4, ncols=1, figsize=(3.5,6),
+        subplotpars=matplotlib.figure.SubplotParams(
+            wspace=0.425, hspace=0.75))
+    for plot_idx, scale in enumerate([1, 10, 100, 1000]):
+        for file_name, line_style in [
+            (f'alltables_F{scale}_rl.csv', 'b1-'),
+            (f'alltables_F{scale}_random.csv', 'rx-'),
+            (f'alltables_F{scale}_simple.csv', 'g.-')]:
             df = pd.read_csv(f'{args.in_dir}/{file_name}')
             hits = df.loc[:,'chits']
-            step = df.loc[:,'step']
-            cost = df.loc[:,'crows']
             time = df.loc[:,'ctime']
-            #axes[0].plot(step, hits)
-            axes[1].plot(time, hits)
-            axes[1].set_xscale('log')
-        axes[1].legend(['RL', 'Random', 'Predictions'])
-        plt.savefig(f'{args.out_dir}/F{scale}.pdf')
+            cur_axis = axes[plot_idx]
+            cur_axis.plot(time, hits, line_style, markersize=5)
+            cur_axis.set_xscale('log')
+            cur_axis.set_title(f'Scaling Factor: {scale}')
+            cur_axis.set_ylabel('Detections')
+            cur_axis.legend(
+                ['RL', 'Random', 'Predict'], 
+                ncol=1)
+            if plot_idx == 3:
+                cur_axis.set_xlabel('Time (s)')
+        cur_axis.yaxis.grid()
+
+    plt.tight_layout(1.05)
+    plt.savefig(f'{args.out_dir}/time_vs_hits.pdf')

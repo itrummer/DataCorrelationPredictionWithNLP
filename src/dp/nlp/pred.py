@@ -67,15 +67,15 @@ if __name__ == '__main__':
     predictions = predictions[:,1]
     df['predictions'] = predictions.to('cpu')
     
-    model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
-    start_s = time.time()
-    df['embedding1'] = model.encode(
-        df['column1'], convert_to_tensor=True).to('cpu')
-    df['embedding2'] = model.encode(
-        df['column2'], convert_to_tensor=True).to('cpu')
-    total_s = time.time() - start_s
-    avg_s = total_s / nr_pairs
-    df['etime'] = avg_s
-    print(f'Embedding took {total_s} seconds (avg: {avg_s}).')
+    # model = SentenceTransformer('paraphrase-MiniLM-L12-v2')
+    # start_s = time.time()
+    # df['embedding1'] = model.encode(
+        # df['column1'], convert_to_tensor=True).to('cpu')
+    # df['embedding2'] = model.encode(
+        # df['column2'], convert_to_tensor=True).to('cpu')
+    # total_s = time.time() - start_s
+    # avg_s = total_s / nr_pairs
+    # df['etime'] = avg_s
+    # print(f'Embedding took {total_s} seconds (avg: {avg_s}).')
     
     df.to_csv(args.out_path)
