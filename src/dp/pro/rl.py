@@ -47,7 +47,7 @@ class CordulaGym(gym.Env):
         if action == 0: # Apply NLP to next batch of column pairs
             nr_remaining = self.nr_pairs - self.next_pair
             batch_size = min(nr_remaining, self.pred_per_step)
-            last_pair = self.next_pair + batch_size
+            last_pair = self.next_pair + batch_size - 1
             batch = self.df.iloc[self.next_pair:last_pair,:]
             for _, row in batch.iterrows():
                 pred = row['predictions']
@@ -55,7 +55,7 @@ class CordulaGym(gym.Env):
                 cost = row['time']
                 heapq.heappush(self.heap, (-pred, label, cost))
             
-            self.next_pair += batch_size
+            self.next_pair += batch_size + 1
             self.sim_time += batch_size * self.s_per_pred
             
         elif action == 1: # Process items without predictions
