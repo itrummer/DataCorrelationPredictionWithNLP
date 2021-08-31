@@ -66,7 +66,17 @@ if __name__ == '__main__':
                         # 0:round(g.shape[0]/10.0),'labels'].sum()/max(1,g['labels'].sum()))
             
             cur_axis = axes[plot_idx]
-            cur_axis.plot(b_ratios, r_line)
-            cur_axis.plot(b_ratios, n_line)
+            cur_axis.plot(b_ratios, r_line, 'b1-')
+            cur_axis.plot(b_ratios, n_line, 'rx-')
+            cur_axis.yaxis.grid()
+            if min_pairs == 0:
+                cur_axis.set_title(f'All Data Sets')
+            else:
+                cur_axis.set_title(f'At Least {min_pairs} Column Pairs')
+            cur_axis.set_ylabel('Detections')
+            if plot_idx == 3:
+                cur_axis.set_xlabel('Number of Tests')
+            cur_axis.legend(['Random', '+NLP'])
 
+        plt.tight_layout(1.05)
         plt.savefig(f'{args.out_dir}/{coefficient}/hits_per_table.pdf')
