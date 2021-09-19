@@ -6,6 +6,7 @@ Created on Aug 29, 2021
 import argparse
 import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.font_manager
 import pandas as pd
 import statistics
 
@@ -16,7 +17,10 @@ if __name__ == '__main__':
     parser.add_argument('out_dir', type=str, help='Path to output directory')
     args = parser.parse_args()
     
-    plt.rcParams.update({'text.usetex': True, 'font.size':9})
+    plt.rcParams.update(
+        {'text.usetex': True, 'font.size':9,  
+         'font.serif':['Computer Modern'],
+         'font.family':'serif'})
     b_ratios = [0.05, 0.1, 0.15, 0.2, 0.25]
     
     for coefficient in ['pearson', 'spearman', 'theilsu']:
@@ -24,11 +28,11 @@ if __name__ == '__main__':
         in_path = f'{args.in_dir}/{coefficient}.csv'
         df = pd.read_csv(in_path, sep=',')
 
-        _, axes = plt.subplots(nrows=4, ncols=1, figsize=(3.5,5),
+        _, axes = plt.subplots(nrows=3, ncols=1, figsize=(3.5,5),
             subplotpars=matplotlib.figure.SubplotParams(
                 wspace=0.425, hspace=0.75))
         
-        for plot_idx, min_pairs in enumerate([0, 10, 20, 40]):
+        for plot_idx, min_pairs in enumerate([0, 10, 40]):
             print(f'Processing tables with at least {min_pairs} columns ...')
             r_line = []
             n_line = []
@@ -70,13 +74,13 @@ if __name__ == '__main__':
             cur_axis.plot(b_ratios, n_line, 'rx-')
             cur_axis.yaxis.grid()
             if min_pairs == 0:
-                cur_axis.set_title(f'All Data Sets')
+                cur_axis.set_title(f'All Tables')
             else:
                 cur_axis.set_title(f'At Least {min_pairs} Column Pairs')
             cur_axis.set_ylabel('Detections')
-            if plot_idx == 3:
-                cur_axis.set_xlabel('Number of Tests')
+            # if plot_idx == 3:
+            cur_axis.set_xlabel('Number of Tests')
             cur_axis.legend(['Random', '+NLP'])
 
         plt.tight_layout(1.05)
-        plt.savefig(f'{args.out_dir}/{coefficient}/hits_per_table.pdf')
+        plt.savefig(f'{args.out_dir}/{coefficient}.pdf')
