@@ -1,6 +1,8 @@
 # DataCorrelationPredictionWithNLP
 In this project, I try to predict data correlations by analyzing column names. Such methods can be useful, for instance, for database tuning as correlations make optimization hard. I use pre-trained language models, based on the transformer architecture, for the prediction.
 
+The scripts used for experiments are in this repository. Furthermore, a file containing results about data correlations in thousands of Kaggle data sets is available for download [here](https://drive.google.com/file/d/14w73DDKaCaNpaFM0CwR-ES-wkcsIYX99/view?usp=share_link).
+
 This code relates to the following papers:
 
 ```
