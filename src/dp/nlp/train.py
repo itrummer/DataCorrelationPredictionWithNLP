@@ -55,7 +55,7 @@ if __name__ == '__main__':
     train_data = datasets.load_from_disk(args.in_path)
     labels = train_data['labels']
     class_weights = compute_class_weight(
-        'balanced', [0, 1], labels)
+        class_weight='balanced', classes=[0, 1], y=labels)
     train_data = CorrelationDS(
         train_data['column1'], train_data['column2'],
         train_data['labels'])
