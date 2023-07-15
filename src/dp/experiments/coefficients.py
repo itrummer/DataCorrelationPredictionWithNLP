@@ -129,7 +129,7 @@ model_args = ClassificationArgs(num_train_epochs=10, train_batch_size=100,
                                 wandb_project='CorrelationPredictionv1',
                                 wandb_kwargs={'name': w_name})
 model = ClassificationModel(mod_type, mod_name, weight=weights,
-                            use_cuda = False, args=model_args)
+                            use_cuda = True, args=model_args)
 model.train_model(train_df=train, eval_df=test, acc=metrics.accuracy_score, 
     rec=metrics.recall_score, pre=metrics.precision_score, f1=metrics.f1_score)
 training_time = time.time() - s_time
@@ -221,6 +221,14 @@ for m in [0, 1]:
     # use entire test set (redundant - for verification)
     test_name = f'{m}-final'
     log_metrics(test, test_name, 0, 'inf', m)
+    
+    # test for data types
+    for type1 in ['object', 'float64', 'int64', 'bool']:
+        for type2 in ['object', 'float64', 'int64', 'bool']:
+            sub_test = test.query(f'type1=={type1} and type2=={type2}')
+            test_name = f'Types{type1}-{type2}'
+            log_metrics(sub_test, test_name, -1, -1, m)
+    
     # test for different subsets
     for q in [(0, 0.25), (0.25, 0.5), (0.5, 1)]:
         qlb = q[0]
