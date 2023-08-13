@@ -325,7 +325,7 @@ if __name__ == '__main__':
     # train classification model
     s_time = time.time()
     model_args = ClassificationArgs(
-        num_train_epochs=10, train_batch_size=100, eval_batch_size=100,
+        num_train_epochs=5, train_batch_size=100, eval_batch_size=100,
         overwrite_output_dir=True, manual_seed=seed, 
         evaluate_during_training=True, no_save=True)
     model = ClassificationModel(
@@ -345,7 +345,7 @@ if __name__ == '__main__':
         file.write(
             'coefficient,min_v1,max_v2,mod_type,mod_name,scenario,test_ratio,'
             'test_name,pred_method,lb,ub,f1,precision,recall,accuracy,mcc,'
-            'prediction_time,training_time')
+            'prediction_time,training_time\n')
         
     # use simple baseline and model for prediction
     for m in [0, 1]:
