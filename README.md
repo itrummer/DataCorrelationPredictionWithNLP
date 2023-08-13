@@ -1,13 +1,31 @@
-# DataCorrelationPredictionWithNLP
-In this project, I try to predict data correlations by analyzing column names. Such methods can be useful, for instance, for database tuning as correlations make optimization hard. I use pre-trained language models, based on the transformer architecture, for the prediction.
+# Predicting Data Correlation via Large Language Models
 
-The scripts used for experiments are in this repository. Furthermore, a file containing results about data correlations in thousands of Kaggle data sets is available for download [here](https://drive.google.com/file/d/14w73DDKaCaNpaFM0CwR-ES-wkcsIYX99/view?usp=share_link).
+This project aims at predicting which column pairs are likely correlated by analyzing column names via large language models (LLMs). The following instructions have been tested on a p3.2xlarge AWS EC 2 instance with Deep Learning Base GPU AMI (Ubuntu 20.04) 20230804.
+
+## Setup
+
+1. Download this repository, e.g., run:
+```
+git clone https://github.com/itrummer/DataCorrelationPredictionWithNLP
+```
+2. Install required packages:
+```
+cd DataCorrelationPredictionWithNLP
+pip install -r requirements.txt
+```
+3. Download correlation data [here](https://drive.google.com/file/d/14w73DDKaCaNpaFM0CwR-ES-wkcsIYX99/view?usp=share_link), e.g., run (from within the `DataCorrelationPredictionWithNLP` directory):
+```
+wget -O correlationdata.csv "https://docs.google.com/uc?export=download&confirm=t&id=14w73DDKaCaNpaFM0CwR-ES-wkcsIYX99"
+```
+
+## Running Experiments
 
 The majority of experiments in the associated paper are realized via the code at
 ```
-src/dp/experiments/coefficients.py
+src/dp/experiments/run_experiment.py
 ```
 This script takes the following command line parameters:
+- Path to the .csv file (downloaded before) with correlation data.
 - The correlation coefficient to calculate (e.g., "pearson").
 - The minimal coefficient value for a correlation (e.g., 0.9).
 - The maximal p-value for a correlation (e.g., 0.05 - set to 1 for Theil's U).
@@ -15,10 +33,42 @@ This script takes the following command line parameters:
 - The specific model used for prediction (e.g., "roberta-base").
 - Whether training and test samples derive from common data ("defsep" vs. "datasep").
 - The ratio of samples used for testing (e.g., 0.2), rather than training.
+- Whether to use column types for prediction (1) or not (0).
+- Output path to file with experimental results (will be created).
 
-Note that the path to the input file is currently hard-coded. It needs to be changed to point to the file referenced above.
+Upon invocation, the script trains a language model for correlation prediction, then uses it on the test set to calculate various metrics of prediction performance. It writes the resulting metrics for this approach, as well as for a simplistic baseline, to the output file.
 
-Upon invocation, the script trains a language model for correlation prediction, then uses it on the test set to calculate various metrics of prediction performance. It outputs those metrics via the wandb online platform, as well as to a local file on hard disk. It also generates breakdowns of prediction results, evaluating how test case properties (e.g., column name length) influence prediction performance.
+E.g., try running (from within the `DataCorrelationPredictionWithNLP` directory, assuming that python3.9 is the Python interpreter):
+```
+PYTHONPATH=src python3.9 src/dp/experiments/run_experiment.py correlationdata.csv pearson 0.9 0.05 roberta roberta-base defsep 0.2 0 predictionresults.csv
+```
+
+## Analyzing Results
+
+If executing the code above, results will be stored in `predictionresults.csv`. This CSV file contains results for the LLM predictor as well as for a simple baseline. For instance, search for the row containing the string `1-final` to find LLM results for all test cases.
+
+The semantics of the file columns is the following:
+- coefficient: predicting correlation according to this correlation coefficient (e.g., pearson).
+- min_v1: minimal absolute value of correlation coefficient to be considered correlated.
+- max_v2: maximal p-value to be considered correlated.
+- mod_type: the type of language model (e.g., roberta).
+- mod_name: the name of the language model (e.g., roberta-base).
+- scenario: whether column pairs in training and test set may derive from the same tables (defsep) or not (datasep).
+- test_name: whether LLM predictor or baseline, possibly data subset used for testing (e.g., long column names).
+- pred_method: whether result for simple baseline (0) or LLM predictor (1).
+- lb: lower bound on metric defining data subset (e.g., column name length in characters).
+- ub: upper bound on metric defining data subset (e.g., column name length in characters).
+- f1: F1 score for predicting correlation.
+- precision: precision when predicting correlated column pairs.
+- recall: recall when predicting correlated column pairs.
+- accuracy: accuracy when predicting correlated column pairs.
+- mcc: Matthew's Correlation Coefficient when predicting correlated column pairs.
+- prediction_time: time (in seconds) used for prediction.
+- training_time: time (in seconds) used for training LLM predictor.
+
+Note that the first rows report results for the simple baseline, not for the LLM predictor.
+
+## How to Cite
 
 This code relates to the following papers:
 
