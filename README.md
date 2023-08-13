@@ -42,6 +42,7 @@ E.g., try running (from within the `DataCorrelationPredictionWithNLP` directory,
 ```
 PYTHONPATH=src python3.9 src/dp/experiments/run_experiment.py correlationdata.csv pearson 0.9 0.05 roberta roberta-base defsep 0.2 0 predictionresults.csv
 ```
+Note: the number of epochs was reduced to five in the latest version which does not appear to reduce prediction quality. Set `num_train_epochs` in `run_experiment.py` to 10 to reproduce paper experiments.
 
 ## Analyzing Results
 
