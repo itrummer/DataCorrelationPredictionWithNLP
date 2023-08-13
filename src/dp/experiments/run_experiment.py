@@ -334,7 +334,9 @@ if __name__ == '__main__':
     for m in [0, 1]:
         # use entire test set (redundant - for verification)
         test_name = f'{m}-final'
-        log_metrics(test, test_name, 0, 'inf', m)
+        log_metrics(
+            coeff, min_v1, max_v2, mod_type, mod_name, scenario, 
+            test_ratio, test, test_name, 0, 'inf', m, args.out_path)
     
         # test for data types
         for type1 in ['object', 'float64', 'int64', 'bool']:
