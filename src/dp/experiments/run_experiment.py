@@ -3,6 +3,12 @@ Created on Aug 12, 2023
 
 @author: immanueltrummer
 '''
+from multiprocessing import set_start_method
+try:
+    set_start_method('spawn')
+except RuntimeError:
+    pass
+
 import argparse
 import sklearn.metrics as metrics
 import pandas as pd
@@ -333,6 +339,13 @@ if __name__ == '__main__':
     
     test['length'] = test.apply(names_length, axis=1)
     test['nrtokens'] = test.apply(names_tokens, axis=1)
+    
+    # Initialize result file
+    with open(args.out_path, 'w') as file:
+        file.write(
+            'coefficient,min_v1,max_v2,mod_type,mod_name,scenario,test_ratio,'
+            'test_name,pred_method,lb,ub,f1,precision,recall,accuracy,mcc,'
+            'prediction_time,training_time')
         
     # use simple baseline and model for prediction
     for m in [0, 1]:
