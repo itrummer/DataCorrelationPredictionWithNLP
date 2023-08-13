@@ -344,7 +344,10 @@ if __name__ == '__main__':
                 sub_test = test.query(f'type1=="{type1}" and type2=="{type2}"')
                 if sub_test.shape[0]:
                     test_name = f'Types{type1}-{type2}'
-                    log_metrics(sub_test, test_name, -1, -1, m)
+                    log_metrics(
+                        coeff, min_v1, max_v2, mod_type, mod_name, scenario, 
+                        test_ratio, sub_test, test_name, -1, -1, m, 
+                        args.out_path)
     
         # test for different subsets
         for q in [(0, 0.25), (0.25, 0.5), (0.5, 1)]:
