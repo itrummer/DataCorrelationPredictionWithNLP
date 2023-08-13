@@ -29,23 +29,6 @@ def add_type(row):
     return row
 
 
-def coefficient_label(row, min_v1, max_v2):
-    """ Label column pair as correlated or uncorrelated. 
-    
-    Args:
-        row: describes correlation between column pair.
-        min_v1: minimal (absolute) coefficient value for correlation.
-        min_v2: maximal p-value for correlation.
-    
-    Returns:
-        1 if correlated, 0 if not correlated. 
-    """
-    if abs(row['coefficient']) >= min_v1 and abs(row['pvalue']) <= max_v2:
-        return 1
-    else:
-        return 0
-
-
 def def_split(data, test_ratio, seed):
     """ Split data into training and test set.
     
@@ -298,6 +281,19 @@ if __name__ == '__main__':
     print(data.head())
     
     # label data
+    def coefficient_label(row):
+        """ Label column pair as correlated or uncorrelated. 
+        
+        Args:
+            row: describes correlation between column pair.
+        
+        Returns:
+            1 if correlated, 0 if not correlated. 
+        """
+        if abs(row['coefficient']) >= min_v1 and abs(row['pvalue']) <= max_v2:
+            return 1
+        else:
+            return 0
     data['label'] = data.apply(coefficient_label, axis=1)
     
     # split into test and training
