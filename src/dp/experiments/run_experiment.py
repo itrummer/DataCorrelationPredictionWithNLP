@@ -325,6 +325,10 @@ if __name__ == '__main__':
     model = ClassificationModel(
         mod_type, mod_name, weight=weights,
         use_cuda = True, args=model_args)
+    model.train_model(
+        train_df=train, eval_df=test, acc=metrics.accuracy_score, 
+        rec=metrics.recall_score, pre=metrics.precision_score, 
+        f1=metrics.f1_score)
     training_time = time.time() - s_time
     
     test['length'] = test.apply(names_length, axis=1)
