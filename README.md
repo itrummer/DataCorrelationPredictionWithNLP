@@ -88,11 +88,12 @@ year = {2021}
 ```
 
 ```
-@inproceedings{Trummer2021a,
+@article{Trummer2023d,
 author = {Trummer, Immanuel},
-booktitle = {https://arxiv.org/pdf/2107.04553.pdf},
-pages = {1--12},
-title = {{Can deep neural networks predict data correlations from column names?}},
-year = {2021}
+journal = {PVLDB},
+number = {13},
+title = {{Can Large Language Models Predict Data Correlations from Column Names?}},
+volume = {16},
+year = {2023}
 }
 ```
